@@ -9,16 +9,13 @@ def search(keyword)
 		if f.end_with? '.html' 
 			fobj = File.open(File.join(plurks.path, f))
 			doc = Nokogiri::XML(fobj)
-			content = doc.xpath("//xmlns:div[@class='bigplurk']").inner_html.to_s.split '</a>',2
-			original_author = content[0]
-			content = content[1]
-			content, datetime = content.split('<div class="meta">',2)[0], content.split('<div class="meta">',2)[1]
-			datetime = datetime.split('</div>')[0]
-			datetime = datetime.split(',')[0]
-			content = content.split('</span>',2)[1] if content.split('</span>',2).size==2
-			content = content.split("\n",2)[1] if content.split("\n",2).size==2
+			content = doc.xpath("//xmlns:div[@class='bigplurk']").inner_html.to_s
+			m = content.match(/<a.*>(.+)<\/a>\s*(<span.*>.*<\/span>)?\s*(.*)\s*<div class="meta">([0-9\-\ :]+),*.*<\/div>\s*/m)
+			original_author = m[1]
+			content = m[3]
+			datetime = m[4]
 			if content.include? keyword
-				p content, datetime
+				p original_author, content,datetime
 			end
 		end
 	end
