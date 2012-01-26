@@ -3,7 +3,7 @@ $(document).ready(function() {
         event.preventDefault();
         $.get('search/'+$('#keyword').val(), 
     		function(data) {
-    			$('#result').append(data);
+    			$('#result').html(data);
     		});
     });
 });
