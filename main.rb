@@ -18,14 +18,9 @@ get '/search/:keyword' do |keyword|
 end
 
 get '/plurks/:pid' do |pid|
-	File.read(File.join('plurks',pid + '.html'))
-end
-
-get '/static/*.css', :provides=>:css do |path|
-	content_type 'text/css'
-	File.read(File.join('static',path + ".css"))
+	send_file(File.join('plurks',pid + '.html'))
 end
 
 get '/static/*' do |path|
-	File.read(File.join('static',path))
+	send_file(File.join('static',path))
 end
