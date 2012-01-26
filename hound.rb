@@ -52,13 +52,19 @@ def search(keyword)
 	@@plurks.each do |key,data|
 		#Search plurks you posted
 		d = data[0]
-		result += "<div class=\"result\">#{d[:author]} #{d[:qualifier]}: #{d[:content]},#{d[:datetime]}</div>" if d[:content].match /#{keyword}/i
+		if d[:content].match /#{keyword}/i
+			result += "<div class=\"result\">#{d[:author]} #{d[:qualifier]}: #{d[:content]}"
+			result += "<br />#{d[:datetime]}<a href=\"/plurks/#{key}\" class=\"more\">(more...)</a></div>" 
+		end
 
 		#Search its responses
 		data.each_index do |idx|
 			unless idx==0
 				d = data[idx]
-				result += "<div class=\"result\">#{d[:responser]} #{d[:qualifier]}: #{d[:content]}</div>" if d[:content].match /#{keyword}/i
+				if d[:content].match /#{keyword}/i
+					result += "<div class=\"result\">#{d[:responser]} #{d[:qualifier]}: #{d[:content]}"
+					result += "<br /><a href=\"/plurks/#{key}\" class=\"more\">(more...)</a></div>"
+				end
 			end
 		end
 	end
