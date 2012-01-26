@@ -4,7 +4,7 @@ require 'json'
 
 def search(keyword)
 	plurks = Dir.new('plurks')
-	result = {}
+	result = ''
 	plurks.each do |f|
 		if f.end_with? '.html' 
 			fobj = File.open(File.join(plurks.path, f))
@@ -15,8 +15,9 @@ def search(keyword)
 			content = m[3]
 			datetime = m[4]
 			if content.include? keyword
-				p original_author, content,datetime
+				result+="#{original_author}: #{content},#{datetime}<br />"
 			end
 		end
 	end
+	result
 end

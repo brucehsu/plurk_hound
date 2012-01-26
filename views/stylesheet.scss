@@ -1,0 +1,17 @@
+$radius: 20px;
+$border: 2px solid;
+$width: 500px;
+$height: 600px;
+
+.result {
+	border: $border;
+	border-radius: $radius;
+}
+
+.main_box {
+    float: center;
+    position: relative;
+    margin: auto;
+    width: $width+50;
+    height:$height+50;
+}

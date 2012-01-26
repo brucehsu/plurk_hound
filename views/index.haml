@@ -1,0 +1,11 @@
+%head
+	%title Plurk Hound
+	%link{:href=>'stylesheet.css',:rel=>'stylesheet',:type=>'text/css'}
+	%script{:type=>'text/javascript', :src=>'/jquery.js'}
+	%script{:type=>'text/javascript', :src=>'/plurk_hound.js'}
+%body
+	%div{:class=>'main_box'}
+		%form#keyword_form{:action=>'/search'}
+			%input{:type=>'text',:name=>'keyword',:id=>'keyword'}
+			%input{:type=>'submit', :value=>'Search'}
+		%div{:id=>'result'}
