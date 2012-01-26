@@ -1,4 +1,4 @@
-$radius: 20px;
+$radius: 5px;
 $border: 2px solid;
 $width: 500px;
 $height: 600px;
@@ -6,6 +6,7 @@ $height: 600px;
 .result {
 	border: $border;
 	border-radius: $radius;
+	margin: 3px;
 }
 
 .main_box {

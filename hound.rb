@@ -16,7 +16,7 @@ def search(keyword)
 			original_author = m[1]
 			content = m[3]
 			datetime = m[4]
-			result += "#{original_author}: #{content},#{datetime}<br />" if content.include? keyword
+			result += "<div class=\"result\">#{original_author}: #{content},#{datetime}</div>" if content.include? keyword
 
 			#Search its responses
 			res = doc.xpath("//xmlns:div[@class='response']")
@@ -25,7 +25,7 @@ def search(keyword)
 				m = content.match(/<a.*>(.+)<\/a>\s*(<span.*>.*<\/span>)?\s*<span class=\"plurk_content\">(.*)<\/span>.*/m)
 				responser = m[1]
 				content = m[3]
-				result += "#{responser}: #{content}<br />" if content.include? keyword
+				result += "<div class=\"result\">#{responser}: #{content}</div>" if content.include? keyword
 			end
 		end
 	end
